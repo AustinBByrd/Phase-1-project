@@ -84,7 +84,10 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px; 
-    max-width: 25%;/* 5px rounded corners */
+    width: 20%;/* 5px rounded corners */
+    display: inline-block;
+    /* white-space: initial; */
+    padding-block:3px ;
   }
   
   /* Add rounded corners to the top left and the top right corner of the image */
@@ -92,7 +95,7 @@
     border-radius: 5px 5px 0 0;
   }
   .beerPhoto{
-    padding-left: 45%;
+    /* padding-left: 45%; */
     position: relative;
     width: 75px;
     height: 200px;
