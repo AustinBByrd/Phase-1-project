@@ -91,7 +91,7 @@
   img {
     border-radius: 5px 5px 0 0;
   }
-  #beerPhoto{
+  .beerPhoto{
     padding-left: 45%;
     position: relative;
     width: 75px;
