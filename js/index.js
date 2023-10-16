@@ -1,16 +1,25 @@
 const getBeer = () => {
-    fetch("https://api.punkapi.com/v2/beers")
+    fetch("https://api.punkapi.com/v2/beers/random")
         .then((resp) => resp.json())
         .then((beer) => {
             console.log(beer);
+            beer.forEach(beers =>{
+                findBeer(beers);
+            })
         });
     };
     
     
-/*    const findBeer = (beer) => {
-        const beerImg = document.createAttribute("img");
-        beerImg.src = beer.image_url;
+    const findBeer = (beers) => {
+        const beerImg = document.createElement("img");
+        const beerName = document.createElement("h4");
+        const beerTagLine = document.createElement("p");
+        const beerCard = document.createElement("div");
+        beerImg.src = beers.image_url;
+        beerTagLine.textContent = beers.tagline;
     
-        console.log(beerImg);
+        console.log(beerTagLine);
     };
-*/
+
+
+getBeer();
