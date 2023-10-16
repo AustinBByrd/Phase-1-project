@@ -47,9 +47,20 @@
   
   /* Style the search box inside the navigation bar */
   .topnav input[type=text] {
-    float: right;
+    float: left;
+    box-sizing: border-box;
     padding: 6px;
     border: none;
+    width: 90%;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+  }
+  .topnav button {
+    float: right;
+    width:fit-content;
+    padding: 6px;
+    width:8%;
     margin-top: 8px;
     margin-right: 16px;
     font-size: 17px;
