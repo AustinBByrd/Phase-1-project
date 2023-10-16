@@ -1,9 +1,9 @@
 const getBeer = () => {
     fetch("https://api.punkapi.com/v2/beers/random")
         .then((resp) => resp.json())
-        .then((beer) => {
-            console.log(beer);
-            beer.forEach(beers =>{
+        .then((data) => {
+            console.log(data);
+            data.forEach(beers =>{
                 findBeer(beers);
             })
         });
