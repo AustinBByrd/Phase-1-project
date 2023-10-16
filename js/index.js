@@ -6,7 +6,7 @@ const header = document.getElementById("header-background");
 
 //GET beer
 const getBeer = () => {
-    fetch("https://api.punkapi.com/v2/beers?page=1&per_page=80")
+    fetch("https://api.punkapi.com/v2/beers?page=4&per_page=80")
         .then((resp) => resp.json())
         .then((data) => {
             console.log(data);
@@ -41,22 +41,24 @@ const findBeer = (beer) => {
     searchButton.addEventListener("click", () => {
         let test = text.indexOf(searchTerm.value);
         if (test != -1) {
-            console.log(beerName);
-            console.log(beer.id);
-            console.log(beerTagLine);
+            beerContainer.appendChild(beerName);
+            beerContainer.appendChild(beerAbv);
+            beerContainer.appendChild(beerTagLine);
+            beerContainer.appendChild(beerImg);
+            beerCard.appendChild(beerContainer);
+            header.appendChild(beerCard);
         } else {
-            console.log("FALSE");
+            console.log("does not exist");
         };
     });
 
 //Create new card
-
-    beerContainer.appendChild(beerName);
-    beerContainer.appendChild(beerAbv);
-    beerContainer.appendChild(beerTagLine);
-    beerContainer.appendChild(beerImg);
-    beerCard.appendChild(beerContainer);
-    header.appendChild(beerCard);
+    // beerContainer.appendChild(beerName);
+    // beerContainer.appendChild(beerAbv);
+    // beerContainer.appendChild(beerTagLine);
+    // beerContainer.appendChild(beerImg);
+    // beerCard.appendChild(beerContainer);
+    // header.appendChild(beerCard);
 };
 
 getBeer();
