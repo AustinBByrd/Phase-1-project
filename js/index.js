@@ -30,6 +30,7 @@ const findBeer = (beer) => {
 
 
     beerImg.src = beer.image_url;
+    beerImg.alt = `A picture of ${beer.name}`;
     beerAbv.innerText = "ABV: " + beer.abv + "%";
     beerTagLine.innerText = beer.tagline;
     beerName.innerText = beer.name;
