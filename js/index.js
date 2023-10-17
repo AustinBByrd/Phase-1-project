@@ -1,11 +1,11 @@
 let searchTerm = document.getElementById("form");
 const searchButton = document.querySelector("button");
 let searchResults = [];
-const header = document.getElementById("header-background");
+
 const randomButton = document.getElementById("random");
-let cardElement = document.getElementById("header-background");
 const resetButton = document.getElementById("reset");
-const display = document.querySelector(".display");
+let display = document.querySelector(".display");
+const header = document.getElementById("header-background");
 
 //remove contents
 const removeChildren = () => {
@@ -14,6 +14,9 @@ const removeChildren = () => {
         display.removeChild(display.lastChild);
     }
 }
+
+
+
 
 //GET beer
 const getBeer = () => {
@@ -26,7 +29,7 @@ const getBeer = () => {
             });
         });
     
-    };
+};
     
 //pull beer and grab tagline
 const findBeer = (beer) => {
@@ -49,6 +52,7 @@ const findBeer = (beer) => {
 
     let text = String(beerTagLine.innerText);
     
+//search button works
     let test = text.indexOf(searchTerm.value);
     if (test != -1) {
         beerContainer.appendChild(beerName);
@@ -64,7 +68,22 @@ const findBeer = (beer) => {
 
 
 
-//run random beer fetch
+
+
+searchButton.addEventListener("click", () => {
+    display.remove();
+    console.log(display);
+    display = document.createElement("div")
+    display.classList.add("display");
+    header.appendChild(display);    
+    getBeer();  
+ })
+
+
+
+
+
+
 const getRandomBeer = () => {
 fetch("https://api.punkapi.com/v2/beers/random")
     .then((resp) => resp.json())
@@ -93,24 +112,22 @@ const randomBeer = (rand) => {
     beerTagLine.innerText = rand.tagline;
     beerName.innerText = rand.name;
 
+
     beerContainer.appendChild(beerName);
     beerContainer.appendChild(beerAbv);
     beerContainer.appendChild(beerTagLine);
     beerContainer.appendChild(beerImg);
     beerCard.appendChild(beerContainer);
     display.appendChild(beerCard);
-
 }
 
 
-//searchbutton click event listen
-searchButton.addEventListener("click", () => {
-    removeChildren()
-    setTimeout(getBeer, 1000);
-    //getBeer();  
-})
-
 randomButton.addEventListener("click", () => {
+    display.remove();
+    console.log(display);
+    display = document.createElement("div")
+    display.classList.add("display");
+    header.appendChild(display); 
     getRandomBeer();
 })
 
