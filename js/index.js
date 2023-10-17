@@ -3,6 +3,7 @@ const searchButton = document.querySelector("button");
 let searchResults = [];
 const header = document.getElementById("header-background");
 const randomButton = document.getElementById("random");
+let cardElement = document.querySelectorAll("card");
 
 
 //GET beer
@@ -51,7 +52,7 @@ const findBeer = (beer) => {
             header.appendChild(beerCard);
         } else {
             console.log("does not exist");
-        };
+        }; 
     });
 
 //Create new card
