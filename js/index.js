@@ -1,5 +1,5 @@
-let searchTerm = document.getElementById("form");
-const searchButton = document.querySelector("button");
+let searchTerm = document.getElementById("form-search");
+const searchButton = document.querySelector("form");
 let searchResults = [];
 
 const randomButton = document.getElementById("random");
@@ -73,13 +73,15 @@ const findBeer = (beer) => {
 
 
 
-searchButton.addEventListener("click", () => {
+searchButton.addEventListener("submit", (e) => {
+    e.preventDefault();
     display.remove();
     console.log(display);
     display = document.createElement("div")
     display.classList.add("display");
-    header.appendChild(display);    
+    header.appendChild(display);  
     getBeer();  
+    
  })
 
 
