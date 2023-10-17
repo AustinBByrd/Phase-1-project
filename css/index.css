@@ -51,7 +51,7 @@
     box-sizing: border-box;
     padding: 6px;
     border: none;
-    width: 90%;
+    width: 87%;
     margin-top: 8px;
     margin-right: 16px;
     font-size: 17px;
@@ -81,13 +81,14 @@
     }
   }
   .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 #1e1f1d;
     transition: 0.3s;
     border-radius: 5px; 
-    width: 20%;/* 5px rounded corners */
+    width: 23%;
     display: inline-block;
     /* white-space: initial; */
-    padding-block:3px ;
+    padding-block:15px ;
+    margin-bottom: 100px;
   }
   
   /* Add rounded corners to the top left and the top right corner of the image */
