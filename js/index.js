@@ -149,15 +149,41 @@ resetButton.addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", function() {
     let checkbox = document.getElementById("toggle");
     const audio = new Audio("audio/getbeer.mp3");
+   
   
     checkbox.addEventListener("change", function() {
-      if (checkbox.checked) {
-        audio.play();
-        audio.volume = 0.1;
+        var style = document.getElementById('style');
+        if (checkbox.checked) {
+            audio.play();
+            audio.volume = 0.1;
+            audio.loop = true;
+      
+            
+            const volumeControl = document.createElement("input");
+            volumeControl.setAttribute("type", "range");
+            volumeControl.setAttribute("id", "volume-control"); 
+            volumeControl.min = 0;
+            volumeControl.max = 100;
+            volumeControl.value = 10;
+          
+            const footer = document.querySelector("footer"); 
+            footer.appendChild(volumeControl);
+      
+            
+            const volume = document.querySelector("#volume-control");
+            volume.addEventListener("change", function(e) {
+                const adjustedVolume = e.currentTarget.value / 100; 
+                audio.volume = Math.min(adjustedVolume, .4);
+            })
+            style.href = 'css/highenergy.css'; 
       } else {
         audio.pause();
         audio.currentTime = 0;
-        
+        const volumeControl = document.querySelector("#volume-control");
+        if (volumeControl) {
+          volumeControl.remove();
+        }
+        style.href = 'css/index.css';
       }
     });
   });
