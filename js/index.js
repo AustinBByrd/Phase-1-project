@@ -145,4 +145,8 @@ randomButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
     removeChildren();
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> origin/gabe
