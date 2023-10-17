@@ -51,13 +51,23 @@
     box-sizing: border-box;
     padding: 6px;
     border: none;
-    width: 60%;
+    width:69%;
     margin-top: 8px;
     margin-right: 16px;
     font-size: 17px;
   }
   .topnav button {
-    float: right;
+    float: left;
+    width:fit-content;
+    padding: 6px;
+    width:8%;
+    margin-top: 8px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+  #searchButton {
+    float: left;
     width:fit-content;
     padding: 6px;
     width:8%;
