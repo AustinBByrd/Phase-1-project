@@ -144,3 +144,20 @@ randomButton.addEventListener("click", () => {
 resetButton.addEventListener("click", () => {
     removeChildren();
 })
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    let checkbox = document.getElementById("toggle");
+    const audio = new Audio("audio/getbeer.mp3");
+  
+    checkbox.addEventListener("change", function() {
+      if (checkbox.checked) {
+        audio.play();
+        audio.volume = 0.1;
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        
+      }
+    });
+  });
