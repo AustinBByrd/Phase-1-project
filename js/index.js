@@ -7,19 +7,13 @@ let cardElement = document.getElementById("header-background");
 const resetButton = document.getElementById("reset");
 const display = document.querySelector(".display");
 
-
-
-
-
+//remove contents
 const removeChildren = () => {
     let firstChild = display.firstChild;
     while (firstChild) {
         display.removeChild(display.lastChild);
     }
 }
-
-
-
 
 //GET beer
 const getBeer = () => {
@@ -33,7 +27,6 @@ const getBeer = () => {
         });
     
     };
-    
     
 //pull beer and grab tagline
 const findBeer = (beer) => {
@@ -56,51 +49,26 @@ const findBeer = (beer) => {
 
     let text = String(beerTagLine.innerText);
     
-//    console.log(text);
-//search button works
-    //searchButton.addEventListener("click", () => {
-        let test = text.indexOf(searchTerm.value);
-        if (test != -1) {
-            beerContainer.appendChild(beerName);
-            beerContainer.appendChild(beerAbv);
-            beerContainer.appendChild(beerTagLine);
-            beerContainer.appendChild(beerImg);
-            beerCard.appendChild(beerContainer);
-            display.appendChild(beerCard);
-        } else {
-            console.log("does not exist");
-        }; 
-    //});
-
-//Create new card
-    // beerContainer.appendChild(beerName);
-    // beerContainer.appendChild(beerAbv);
-    // beerContainer.appendChild(beerTagLine);
-    // beerContainer.appendChild(beerImg);
-    // beerCard.appendChild(beerContainer);
-    // header.appendChild(beerCard);
+    let test = text.indexOf(searchTerm.value);
+    if (test != -1) {
+        beerContainer.appendChild(beerName);
+        beerContainer.appendChild(beerAbv);
+        beerContainer.appendChild(beerTagLine);
+        beerContainer.appendChild(beerImg);
+        beerCard.appendChild(beerContainer);
+        display.appendChild(beerCard);
+    } else {
+        console.log("does not exist");
+    }; 
 };
 
 
 
-
-
-searchButton.addEventListener("click", () => {
-    removeChildren()
-    setTimeout(getBeer, 1000);
-    //getBeer();  
-})
-
-
-
-
-
-
+//run random beer fetch
 const getRandomBeer = () => {
 fetch("https://api.punkapi.com/v2/beers/random")
     .then((resp) => resp.json())
     .then((data) => {
-        //console.log(data);
         data.forEach(rand => {
             randomBeer(rand);
         });
@@ -125,24 +93,26 @@ const randomBeer = (rand) => {
     beerTagLine.innerText = rand.tagline;
     beerName.innerText = rand.name;
 
-    //randomButton.addEventListener("click", () => {
-            beerContainer.appendChild(beerName);
-            beerContainer.appendChild(beerAbv);
-            beerContainer.appendChild(beerTagLine);
-            beerContainer.appendChild(beerImg);
-            beerCard.appendChild(beerContainer);
-            display.appendChild(beerCard);
-    //})
+    beerContainer.appendChild(beerName);
+    beerContainer.appendChild(beerAbv);
+    beerContainer.appendChild(beerTagLine);
+    beerContainer.appendChild(beerImg);
+    beerCard.appendChild(beerContainer);
+    display.appendChild(beerCard);
+
 }
+
+
+//searchbutton click event listen
+searchButton.addEventListener("click", () => {
+    removeChildren()
+    setTimeout(getBeer, 1000);
+    //getBeer();  
+})
 
 randomButton.addEventListener("click", () => {
     getRandomBeer();
 })
-
-
-
-
-
 
 resetButton.addEventListener("click", () => {
     removeChildren();
