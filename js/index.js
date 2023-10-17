@@ -66,7 +66,7 @@ const findBeer = (beer) => {
 
 getBeer();  
 
-
+//GET random beer
 fetch("https://api.punkapi.com/v2/beers/random")
     .then((resp) => resp.json())
     .then((data) => {
@@ -75,7 +75,6 @@ fetch("https://api.punkapi.com/v2/beers/random")
             randomBeer(rand);
         });
     });
-
 
 const randomBeer = (rand) => {
     const beerImg = document.createElement("img");
