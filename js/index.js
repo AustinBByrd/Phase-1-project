@@ -2,10 +2,23 @@ let searchTerm = document.getElementById("form");
 const searchButton = document.querySelector("button");
 let searchResults = [];
 const header = document.getElementById("header-background");
-<<<<<<< HEAD
-=======
 const randomButton = document.getElementById("random");
->>>>>>> origin/gabe
+let cardElement = document.getElementById("header-background");
+const resetButton = document.getElementById("reset");
+const display = document.querySelector(".display");
+
+
+
+
+
+const removeChildren = () => {
+    let firstChild = display.firstChild;
+    while (firstChild) {
+        display.removeChild(display.lastChild);
+    }
+}
+
+
 
 
 //GET beer
@@ -18,6 +31,7 @@ const getBeer = () => {
                 findBeer(x);
             });
         });
+    
     };
     
 //pull beer and grab tagline
@@ -43,7 +57,7 @@ const findBeer = (beer) => {
     
 //    console.log(text);
 //search button works
-    searchButton.addEventListener("click", () => {
+    //searchButton.addEventListener("click", () => {
         let test = text.indexOf(searchTerm.value);
         if (test != -1) {
             beerContainer.appendChild(beerName);
@@ -51,11 +65,11 @@ const findBeer = (beer) => {
             beerContainer.appendChild(beerTagLine);
             beerContainer.appendChild(beerImg);
             beerCard.appendChild(beerContainer);
-            header.appendChild(beerCard);
+            display.appendChild(beerCard);
         } else {
             console.log("does not exist");
-        };
-    });
+        }; 
+    //});
 
 //Create new card
     // beerContainer.appendChild(beerName);
@@ -66,14 +80,22 @@ const findBeer = (beer) => {
     // header.appendChild(beerCard);
 };
 
-<<<<<<< HEAD
-getBeer();
-
-console.log(searchResults);    
-=======
-getBeer();  
 
 
+
+
+searchButton.addEventListener("click", () => {
+    removeChildren()
+    setTimeout(getBeer, 1000);
+    //getBeer();  
+})
+
+
+
+
+
+
+const getRandomBeer = () => {
 fetch("https://api.punkapi.com/v2/beers/random")
     .then((resp) => resp.json())
     .then((data) => {
@@ -82,7 +104,7 @@ fetch("https://api.punkapi.com/v2/beers/random")
             randomBeer(rand);
         });
     });
-
+}
 
 const randomBeer = (rand) => {
     const beerImg = document.createElement("img");
@@ -102,16 +124,25 @@ const randomBeer = (rand) => {
     beerTagLine.innerText = rand.tagline;
     beerName.innerText = rand.name;
 
-    randomButton.addEventListener("click", () => {
+    //randomButton.addEventListener("click", () => {
             beerContainer.appendChild(beerName);
             beerContainer.appendChild(beerAbv);
             beerContainer.appendChild(beerTagLine);
             beerContainer.appendChild(beerImg);
             beerCard.appendChild(beerContainer);
-            header.appendChild(beerCard);
-    })
+            display.appendChild(beerCard);
+    //})
 }
 
+randomButton.addEventListener("click", () => {
+    getRandomBeer();
+})
 
-console.log(searchResults);  
->>>>>>> origin/gabe
+
+
+
+
+
+resetButton.addEventListener("click", () => {
+    removeChildren();
+})
