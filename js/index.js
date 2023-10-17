@@ -16,6 +16,7 @@ const getBeer = () => {
         });
     };
     
+
 //pull beer and grab tagline
 const findBeer = (beer) => {
     const beerImg = document.createElement("img");
@@ -37,6 +38,7 @@ const findBeer = (beer) => {
 
     let text = String(beerTagLine.innerText);
     
+
 //    console.log(text);
 //search button works
     searchButton.addEventListener("click", () => {
@@ -53,6 +55,7 @@ const findBeer = (beer) => {
         };
     });
 
+
 //Create new card
     // beerContainer.appendChild(beerName);
     // beerContainer.appendChild(beerAbv);
@@ -61,6 +64,7 @@ const findBeer = (beer) => {
     // beerCard.appendChild(beerContainer);
     // header.appendChild(beerCard);
 };
+
 
 getBeer();
 
