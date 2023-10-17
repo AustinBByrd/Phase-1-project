@@ -5,7 +5,7 @@ const header = document.getElementById("header-background");
 const randomButton = document.getElementById("random");
 let cardElement = document.getElementById("header-background");
 const resetButton = document.getElementById("reset");
-const display = document.querySelector(".display");
+let display = document.querySelector(".display");
 
 
 
@@ -85,9 +85,12 @@ const findBeer = (beer) => {
 
 
 searchButton.addEventListener("click", () => {
-    removeChildren()
-    setTimeout(getBeer, 1000);
-    //getBeer();  
+   display.remove();
+   console.log(display);
+   display = document.createElement("div")
+   display.classList.add("display");
+    header.appendChild(display);    
+    getBeer();  
 })
 
 
@@ -145,8 +148,4 @@ randomButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
     removeChildren();
-<<<<<<< HEAD
 })
-=======
-})
->>>>>>> origin/gabe
