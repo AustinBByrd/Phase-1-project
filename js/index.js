@@ -4,7 +4,8 @@ let searchResults = [];
 
 const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
-const display = document.querySelector(".display");
+let display = document.querySelector(".display");
+const header = document.getElementById("header-background");
 
 
 
@@ -73,9 +74,13 @@ const findBeer = (beer) => {
 
 
 searchButton.addEventListener("click", () => {
-    
+    display.remove();
+    console.log(display);
+    display = document.createElement("div")
+    display.classList.add("display");
+    header.appendChild(display);    
     getBeer();  
-})
+ })
 
 
 
@@ -121,6 +126,11 @@ const randomBeer = (rand) => {
 
 
 randomButton.addEventListener("click", () => {
+    display.remove();
+    console.log(display);
+    display = document.createElement("div")
+    display.classList.add("display");
+    header.appendChild(display); 
     getRandomBeer();
 })
 
