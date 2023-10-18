@@ -1,14 +1,10 @@
-const searchTerm = document.getElementById("search-input");
-const searchForm = document.getElementById("search-form");
+const searchTerm = document.getElementById("form-search");
+const searchButton = document.getElementById("form");
 let searchResults = [];
 const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
 let display = document.querySelector(".display");
 const header = document.getElementById("header-background");
-
-
-
-
 
 const removeChildren = () => {
     let firstChild = display.firstChild;
@@ -16,7 +12,6 @@ const removeChildren = () => {
         display.removeChild(display.lastChild);
     }
 }
-
 
 //GET beer
 const getBeer = () => {
@@ -27,9 +22,8 @@ const getBeer = () => {
             data.forEach(x => {
                 findBeer(x);
             });
-            searchForm.reset();
+            searchButton.reset();
         });
-    
 };
     
 //pull beer and grab tagline
@@ -71,7 +65,7 @@ const findBeer = (beer) => {
 
 
 
-searchForm.addEventListener("submit", (e) => {
+searchButton.addEventListener("submit", (e) => {
     e.preventDefault();
     display.remove();
     display = document.createElement("div")
@@ -120,7 +114,6 @@ const randomBeer = (rand) => {
 
 randomButton.addEventListener("click", () => {
     display.remove();
-    console.log(display);
     display = document.createElement("div")
     display.classList.add("display");
     header.appendChild(display); 
