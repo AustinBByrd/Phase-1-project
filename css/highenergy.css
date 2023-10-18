@@ -110,8 +110,8 @@
   }
   .beerPhoto{
     position: relative;
-    width: 75px;
-    height: 250px;
+    width: 100px;
+    height: 300px;
   }
 .container{
   text-align: center;
@@ -157,7 +157,7 @@ footer {
   width: 100%;
   text-align: end;
   color: hsl(324, 70%, 45%);
-  animation: wheelHueColor 5s infinite;
+  animation: wheelHueColor2 4s infinite;
   background-color: currentColor;
   background-image: linear-gradient(45deg, white 10%, black 90%);
   background-blend-mode: overlay;
@@ -184,4 +184,16 @@ body {
     70%      { color: hsl(216, 60%, 45%); }
     80%      { color: hsl(252, 65%, 50%); }
     90%      { color: hsl(288, 60%, 40%); }
+  }
+  @keyframes wheelHueColor2 {
+    from, to { color: black;}
+    10%      { color: grey; }
+    20%      { color: white;}
+    30%      { color: grey; }
+    40%      { color: black; }
+    50%      { color: grey; }
+    60%      { color: white; }
+    70%      { color: grey;}
+    80%      { color: black; }
+    90%      { color: grey}
   }
