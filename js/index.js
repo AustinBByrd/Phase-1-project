@@ -159,6 +159,3 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
-searchTerm.addEventListener("click", (e) =>{
-    console.log("hello");
-})
