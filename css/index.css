@@ -97,6 +97,7 @@
   margin-bottom: 100px;
   margin-right: 15px;
   background-color: white;
+  text-align: center;
 }
 /* style the P tags inside container.. ex. abv, tagline */
 .container p {
@@ -158,3 +159,14 @@ footer {
   color: white;
   text-align: end;
 }
+.btn {
+  background-color: red;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: relative;
+}
+

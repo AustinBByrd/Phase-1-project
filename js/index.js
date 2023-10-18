@@ -4,7 +4,7 @@ const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
 let display = document.querySelector(".display");
 const header = document.getElementById("header-background");
-
+// const descButton = document.getElementsByClassName("btn");
 const removeChildren = () => {
     let firstChild = display.firstChild;
     while (firstChild) {
@@ -23,7 +23,16 @@ const getBeer = () => {
             searchButton.reset();
         });
 };
-    
+//random beer generator
+const getRandomBeer = () => {
+fetch("https://api.punkapi.com/v2/beers/random")
+    .then((resp) => resp.json())
+    .then((data) => {
+        data.forEach(rand => {
+            findBeer(rand);
+        });
+    });
+}
 //pull beer and grab tagline
 const findBeer = (beer) => {
     const beerImg = document.createElement("img");
@@ -32,6 +41,8 @@ const findBeer = (beer) => {
     const beerTagLine = document.createElement("p");
     const beerContainer = document.createElement("div");
     const beerCard = document.createElement("div");
+    // const beerButton = document.createElement("button");
+    // beerButton.classList.add("btn");
     beerCard.classList.add("card");
     beerContainer.classList.add("container");
     beerImg.classList.add("beerPhoto");
@@ -55,34 +66,27 @@ const findBeer = (beer) => {
         beerContainer.appendChild(beerTagLine);
         beerContainer.appendChild(beerImg);
         beerCard.appendChild(beerContainer);
+        // beerCard.appendChild(beerButton);
         display.appendChild(beerCard);
-    } 
+    };
 };
-//search form 
-searchButton.addEventListener("submit", (e) => {
-    e.preventDefault();
+
+const replaceDisplay = () => {
     display.remove();
     display = document.createElement("div")
     display.classList.add("display");
     header.appendChild(display);  
+};
+
+//search form 
+searchButton.addEventListener("submit", (e) => {
+    e.preventDefault();
+    replaceDisplay();
     getBeer();  
  })
-//random beer generator
-const getRandomBeer = () => {
-fetch("https://api.punkapi.com/v2/beers/random")
-    .then((resp) => resp.json())
-    .then((data) => {
-        data.forEach(rand => {
-            findBeer(rand);
-        });
-    });
-}
-
+//random beer click EventListener
 randomButton.addEventListener("click", () => {
-    display.remove();
-    display = document.createElement("div")
-    display.classList.add("display");
-    header.appendChild(display); 
+    replaceDisplay();
     getRandomBeer();
 })
 //reset button
