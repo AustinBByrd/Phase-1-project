@@ -9,7 +9,11 @@
   background-position: top;
   padding-top:200px;
   padding-bottom: 150px;
+  padding-left: 0px;
+  padding-right: 0px;
   font-family: fantasy;
+  margin: 0px;
+  margin-left: 0px;
 }
 /* Add a black background color to the top navigation bar */
 .topnav {
