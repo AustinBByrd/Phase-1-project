@@ -23,7 +23,7 @@ const getBeer = () => {
             searchButton.reset();
         });
 };
-    
+
 //pull beer and grab tagline
 const findBeer = (beer) => {
     const beerImg = document.createElement("img");
@@ -56,15 +56,19 @@ const findBeer = (beer) => {
         beerContainer.appendChild(beerImg);
         beerCard.appendChild(beerContainer);
         display.appendChild(beerCard);
-    } 
+    };
 };
-//search form 
-searchButton.addEventListener("submit", (e) => {
-    e.preventDefault();
+
+const replaceDisplay = () => {
     display.remove();
     display = document.createElement("div")
     display.classList.add("display");
     header.appendChild(display);  
+};
+//search form 
+searchButton.addEventListener("submit", (e) => {
+    e.preventDefault();
+    replaceDisplay();
     getBeer();  
  })
 //random beer generator
@@ -78,38 +82,9 @@ fetch("https://api.punkapi.com/v2/beers/random")
     });
 }
 
-/* const randomBeer = (rand) => {
-    const beerImg = document.createElement("img");
-    const beerName = document.createElement("h4");
-    const beerAbv = document.createElement("p");
-    const beerTagLine = document.createElement("p");
-    const beerContainer = document.createElement("div");
-    const beerCard = document.createElement("div");
-    beerCard.classList.add("card");
-    beerContainer.classList.add("container");
-    beerImg.classList.add("beerPhoto");
-
-    if (rand.image_url === null) {
-        rand.image_url = "https://images.punkapi.com/v2/keg.png";
-    }
-    beerImg.src = rand.image_url;
-    beerImg.alt = `A picture of ${rand.name}`;
-    beerAbv.innerText = "ABV: " + rand.abv + "%";
-    beerTagLine.innerText = rand.tagline;
-    beerName.innerText = rand.name;
-    beerContainer.appendChild(beerName);
-    beerContainer.appendChild(beerAbv);
-    beerContainer.appendChild(beerTagLine);
-    beerContainer.appendChild(beerImg);
-    beerCard.appendChild(beerContainer);
-    display.appendChild(beerCard);
-} */
 //random beer click EventListener
 randomButton.addEventListener("click", () => {
-    display.remove();
-    display = document.createElement("div")
-    display.classList.add("display");
-    header.appendChild(display); 
+    replaceDisplay();
     getRandomBeer();
 })
 //reset button
