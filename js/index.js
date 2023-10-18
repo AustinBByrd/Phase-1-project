@@ -1,6 +1,5 @@
 let searchTerm = document.getElementById("form-search");
 const searchButton = document.getElementById("form");
-let searchResults = [];
 const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
 let display = document.querySelector(".display");
@@ -36,7 +35,9 @@ const findBeer = (beer) => {
     beerCard.classList.add("card");
     beerContainer.classList.add("container");
     beerImg.classList.add("beerPhoto");
-
+    if (beer.image_url === null) {
+            beer.image_url = "https://images.punkapi.com/v2/keg.png";
+        }
     beerImg.src = beer.image_url;
     beerImg.alt = `A picture of ${beer.name}`;
     beerAbv.innerText = "ABV: " + beer.abv + "%";
@@ -46,7 +47,7 @@ const findBeer = (beer) => {
     const beerTagLineLower = beer.tagline.toLowerCase();
     const searchTermLower = searchTerm.value.toLowerCase();
     let text = String(beerTagLineLower);
-//search button works
+//search through beers
     let test = text.indexOf(searchTermLower);
     if (test != -1) {
         beerContainer.appendChild(beerName);
@@ -57,7 +58,7 @@ const findBeer = (beer) => {
         display.appendChild(beerCard);
     } 
 };
-
+//search form 
 searchButton.addEventListener("submit", (e) => {
     e.preventDefault();
     display.remove();
@@ -66,18 +67,18 @@ searchButton.addEventListener("submit", (e) => {
     header.appendChild(display);  
     getBeer();  
  })
-
+//random beer generator
 const getRandomBeer = () => {
 fetch("https://api.punkapi.com/v2/beers/random")
     .then((resp) => resp.json())
     .then((data) => {
         data.forEach(rand => {
-            randomBeer(rand);
+            findBeer(rand);
         });
     });
 }
 
-const randomBeer = (rand) => {
+/* const randomBeer = (rand) => {
     const beerImg = document.createElement("img");
     const beerName = document.createElement("h4");
     const beerAbv = document.createElement("p");
@@ -102,8 +103,8 @@ const randomBeer = (rand) => {
     beerContainer.appendChild(beerImg);
     beerCard.appendChild(beerContainer);
     display.appendChild(beerCard);
-}
-
+} */
+//random beer click EventListener
 randomButton.addEventListener("click", () => {
     display.remove();
     display = document.createElement("div")
@@ -111,11 +112,11 @@ randomButton.addEventListener("click", () => {
     header.appendChild(display); 
     getRandomBeer();
 })
-
+//reset button
 resetButton.addEventListener("click", () => {
     removeChildren();
 })
-
+//high energy mode
 document.addEventListener("DOMContentLoaded", function() {
     let checkbox = document.getElementById("toggle");
     const audio = new Audio("audio/getbeer.mp3");
@@ -153,6 +154,3 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
-searchTerm.addEventListener("click", (e) =>{
-    console.log("hello");
-})
