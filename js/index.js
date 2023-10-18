@@ -1,21 +1,21 @@
-let searchTerm = document.getElementById("form-search");
-const searchButton = document.querySelector("form");
+const searchTerm = document.getElementById("search-input");
+const searchForm = document.getElementById("search-form");
 let searchResults = [];
-
 const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
 let display = document.querySelector(".display");
 const header = document.getElementById("header-background");
 
-//remove contents
+
+
+
+
 const removeChildren = () => {
     let firstChild = display.firstChild;
     while (firstChild) {
         display.removeChild(display.lastChild);
     }
 }
-
-
 
 
 //GET beer
@@ -27,6 +27,7 @@ const getBeer = () => {
             data.forEach(x => {
                 findBeer(x);
             });
+            searchForm.reset();
         });
     
 };
@@ -43,17 +44,19 @@ const findBeer = (beer) => {
     beerContainer.classList.add("container");
     beerImg.classList.add("beerPhoto");
 
-
     beerImg.src = beer.image_url;
     beerImg.alt = `A picture of ${beer.name}`;
     beerAbv.innerText = "ABV: " + beer.abv + "%";
     beerTagLine.innerText = beer.tagline;
     beerName.innerText = beer.name;
 
-    let text = String(beerTagLine.innerText);
+    const beerTagLineLower = beer.tagline.toLowerCase();
+    const searchTermLower = searchTerm.value.toLowerCase();
+
+    let text = String(beerTagLineLower);
     
 //search button works
-    let test = text.indexOf(searchTerm.value);
+    let test = text.indexOf(searchTermLower);
     if (test != -1) {
         beerContainer.appendChild(beerName);
         beerContainer.appendChild(beerAbv);
@@ -68,23 +71,14 @@ const findBeer = (beer) => {
 
 
 
-
-
-searchButton.addEventListener("submit", (e) => {
+searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     display.remove();
-    console.log(display);
     display = document.createElement("div")
     display.classList.add("display");
     header.appendChild(display);  
     getBeer();  
-    
  })
-
-
-
-
-
 
 const getRandomBeer = () => {
 fetch("https://api.punkapi.com/v2/beers/random")
@@ -133,6 +127,54 @@ randomButton.addEventListener("click", () => {
     getRandomBeer();
 })
 
+
+
+
+
+
 resetButton.addEventListener("click", () => {
     removeChildren();
 })
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    let checkbox = document.getElementById("toggle");
+    const audio = new Audio("audio/getbeer.mp3");
+   
+  
+    checkbox.addEventListener("change", function() {
+        var style = document.getElementById('style');
+        if (checkbox.checked) {
+            audio.play();
+            audio.volume = 0.1;
+            audio.loop = true;
+      
+            
+            const volumeControl = document.createElement("input");
+            volumeControl.setAttribute("type", "range");
+            volumeControl.setAttribute("id", "volume-control"); 
+            volumeControl.min = 0;
+            volumeControl.max = 100;
+            volumeControl.value = 10;
+          
+            const footer = document.querySelector("footer"); 
+            footer.appendChild(volumeControl);
+      
+            
+            const volume = document.querySelector("#volume-control");
+            volume.addEventListener("change", function(e) {
+                const adjustedVolume = e.currentTarget.value / 100; 
+                audio.volume = Math.min(adjustedVolume, .4);
+            })
+            style.href = 'css/highenergy.css'; 
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        const volumeControl = document.querySelector("#volume-control");
+        if (volumeControl) {
+          volumeControl.remove();
+        }
+        style.href = 'css/index.css';
+      }
+    });
+  });
