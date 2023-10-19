@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var style = document.getElementById('style');
         if (checkbox.checked) {
             audio.play();
-            audio.volume = 0.1;
+            audio.volume = 0.2;
             audio.loop = true;
       
             const volumeControl = document.createElement("input");
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
             volumeControl.setAttribute("id", "volume-control"); 
             volumeControl.min = 0;
             volumeControl.max = 100;
-            volumeControl.value = 10;
+            volumeControl.value = 20;
           
             const footer = document.querySelector("footer"); 
             footer.appendChild(volumeControl);
