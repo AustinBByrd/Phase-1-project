@@ -37,8 +37,8 @@ const getBeer = () => {
     
 //pull beer and grab tagline
 const findBeer = (beer) => {
-    let searchTermLowerCase = searchTerm.value.toLowerCase();
-    let searchString = `${searchTermLowerCase.charAt(0).toUpperCase() + searchTermLowerCase.slice(1).toLowerCase()}`;
+    // let searchTermLowerCase = searchTerm.value.toLowerCase();
+    // let searchString = `${searchTermLowerCase.charAt(0).toUpperCase() + searchTermLowerCase.slice(1).toLowerCase()}`;
 
     const beerImg = document.createElement("img");
     const beerName = document.createElement("h4");
@@ -57,10 +57,13 @@ const findBeer = (beer) => {
     beerTagLine.innerText = beer.tagline;
     beerName.innerText = beer.name;
 
-    let text = String(beerTagLine.innerText);
+    const beerTagLineLower = beer.tagline.toLowerCase();
+    const searchTermLower = searchTerm.value.toLowerCase();
+
+    let text = String(beerTagLineLower);
     
 //search button works
-    let test = text.indexOf(searchString);
+    let test = text.indexOf(searchTermLower);
     if (test != -1) {
         beerContainer.appendChild(beerName);
         beerContainer.appendChild(beerAbv);
