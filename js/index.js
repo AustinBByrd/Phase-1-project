@@ -9,8 +9,8 @@ const removeChildren = () => {
     let firstChild = display.firstChild;
     while (firstChild) {
         display.removeChild(display.lastChild);
-    }
-}
+    };
+};
 
 //GET beer
 const getBeer = () => {
@@ -33,7 +33,7 @@ fetch("https://api.punkapi.com/v2/beers/random")
             findBeer(rand);
         });
     });
-}
+};
 
 //pull beer and grab tagline
 const findBeer = (beer) => {
@@ -44,12 +44,15 @@ const findBeer = (beer) => {
     const beerTagLine = document.createElement("p");
     const beerContainer = document.createElement("div");
     const beerCard = document.createElement("div");
+
     beerCard.classList.add("card");
     beerContainer.classList.add("container");
     beerImg.classList.add("beerPhoto");
+
     if (beer.image_url === null) {
-            beer.image_url = "https://images.punkapi.com/v2/keg.png";
-        }
+        beer.image_url = "https://images.punkapi.com/v2/keg.png";
+    };
+
     beerImg.src = beer.image_url;
     beerImg.alt = `A picture of ${beer.name}`;
     beerAbv.innerText = "ABV: " + beer.abv + "%";
@@ -59,7 +62,8 @@ const findBeer = (beer) => {
     const beerTagLineLower = beer.tagline.toLowerCase();
     const searchTermLower = searchTerm.value.toLowerCase();
     let text = String(beerTagLineLower);
-//search through beers
+
+    //search through beers
     let test = text.indexOf(searchTermLower);
     if (test != -1) {
         beerContainer.appendChild(beerName);
@@ -74,7 +78,7 @@ const findBeer = (beer) => {
         e.preventDefault();
         replaceDisplay();
         findBeerDetails(beer);
-    })
+    });
 };
 
 const replaceDisplay = () => {
@@ -89,18 +93,18 @@ searchButton.addEventListener("submit", (e) => {
     e.preventDefault();
     replaceDisplay();
     getBeer();  
- })
+ });
 
 //random beer click EventListener
 randomButton.addEventListener("click", () => {
     replaceDisplay();
     getRandomBeer();
-})
+});
 
 //reset button
 resetButton.addEventListener("click", () => {
     removeChildren();
-})
+});
 
 //high energy mode
 document.addEventListener("DOMContentLoaded", function() {
@@ -162,9 +166,10 @@ const findBeerDetails = (beer) => {
     beerDescription.classList.add("description");
     beerFoodPairing.classList.add("food-pairing");
     beerBrewersTips.classList.add("brewers-tips");
+
     if (beer.image_url === null) {
-            beer.image_url = "https://images.punkapi.com/v2/keg.png";
-        }
+        beer.image_url = "https://images.punkapi.com/v2/keg.png";
+    };
 
     beerImg.src = beer.image_url;
     beerImg.alt = `A picture of ${beer.name}`;
@@ -175,7 +180,6 @@ const findBeerDetails = (beer) => {
     beerDescription.innerText = "Description: " + beer.description;
     beerFoodPairing.innerText = "Food Pairings: " + beer.food_pairing;
     beerBrewersTips.innerText = "Brewers Tips: " + beer.brewers_tips;
-
 
     beerContainer.appendChild(beerName);
     beerContainer.appendChild(beerAbv);
