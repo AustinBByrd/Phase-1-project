@@ -4,7 +4,7 @@ const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
 let display = document.querySelector(".display");
 const header = document.getElementById("header-background");
-// const descButton = document.getElementsByClassName("btn");
+
 const removeChildren = () => {
     let firstChild = display.firstChild;
     while (firstChild) {
@@ -23,6 +23,7 @@ const getBeer = () => {
             searchButton.reset();
         });
 };
+
 //random beer generator
 const getRandomBeer = () => {
 fetch("https://api.punkapi.com/v2/beers/random")
@@ -33,10 +34,9 @@ fetch("https://api.punkapi.com/v2/beers/random")
         });
     });
 }
+
 //pull beer and grab tagline
 const findBeer = (beer) => {
-    // let searchTermLowerCase = searchTerm.value.toLowerCase();
-    // let searchString = `${searchTermLowerCase.charAt(0).toUpperCase() + searchTermLowerCase.slice(1).toLowerCase()}`;
 
     const beerImg = document.createElement("img");
     const beerName = document.createElement("h4");
@@ -44,8 +44,6 @@ const findBeer = (beer) => {
     const beerTagLine = document.createElement("p");
     const beerContainer = document.createElement("div");
     const beerCard = document.createElement("div");
-    // const beerButton = document.createElement("button");
-    // beerButton.classList.add("btn");
     beerCard.classList.add("card");
     beerContainer.classList.add("container");
     beerImg.classList.add("beerPhoto");
@@ -69,9 +67,14 @@ const findBeer = (beer) => {
         beerContainer.appendChild(beerTagLine);
         beerContainer.appendChild(beerImg);
         beerCard.appendChild(beerContainer);
-        // beerCard.appendChild(beerButton);
         display.appendChild(beerCard);
     };
+
+    beerCard.addEventListener("click", (e) => {
+        e.preventDefault();
+        replaceDisplay();
+        findBeerDetails(beer);
+    })
 };
 
 const replaceDisplay = () => {
@@ -87,15 +90,18 @@ searchButton.addEventListener("submit", (e) => {
     replaceDisplay();
     getBeer();  
  })
+
 //random beer click EventListener
 randomButton.addEventListener("click", () => {
     replaceDisplay();
     getRandomBeer();
 })
+
 //reset button
 resetButton.addEventListener("click", () => {
     removeChildren();
 })
+
 //high energy mode
 document.addEventListener("DOMContentLoaded", function() {
     let checkbox = document.getElementById("toggle");
@@ -123,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 audio.volume = Math.min(adjustedVolume, .4);
             })
             style.href = 'css/highenergy.css'; 
-      } else {
+        } else {
         audio.pause();
         audio.currentTime = 0;
         const volumeControl = document.querySelector("#volume-control");
@@ -131,6 +137,55 @@ document.addEventListener("DOMContentLoaded", function() {
           volumeControl.remove();
         }
         style.href = 'css/index.css';
-      }
+        }
     });
-  });
+});
+
+//displays extra beer details
+const findBeerDetails = (beer) => {
+
+    const beerImg = document.createElement("img");
+    const beerName = document.createElement("h4");
+    const beerAbv = document.createElement("p");
+    const beerTagLine = document.createElement("p");
+    const beerFirstBrewed = document.createElement("p");
+    const beerDescription = document.createElement("p");
+    const beerFoodPairing = document.createElement("p");
+    const beerBrewersTips = document.createElement("p");
+    const beerContainer = document.createElement("div");
+    const beerCard = document.createElement("div");
+
+    beerCard.classList.add("card2");
+    beerContainer.classList.add("container");
+    beerImg.classList.add("beerPhoto");
+    beerFirstBrewed.classList.add("first-brewed");
+    beerDescription.classList.add("description");
+    beerFoodPairing.classList.add("food-pairing");
+    beerBrewersTips.classList.add("brewers-tips");
+    if (beer.image_url === null) {
+            beer.image_url = "https://images.punkapi.com/v2/keg.png";
+        }
+
+    beerImg.src = beer.image_url;
+    beerImg.alt = `A picture of ${beer.name}`;
+    beerAbv.innerText = "ABV: " + beer.abv + "%";
+    beerTagLine.innerText = beer.tagline;
+    beerName.innerText = beer.name;
+    beerFirstBrewed.innerText = "First Brewed: " + beer.first_brewed;
+    beerDescription.innerText = "Description: " + beer.description;
+    beerFoodPairing.innerText = "Food Pairings: " + beer.food_pairing;
+    beerBrewersTips.innerText = "Brewers Tips: " + beer.brewers_tips;
+
+
+    beerContainer.appendChild(beerName);
+    beerContainer.appendChild(beerAbv);
+    beerContainer.appendChild(beerTagLine);
+    beerContainer.appendChild(beerImg);
+    beerContainer.appendChild(beerFirstBrewed);
+    beerContainer.appendChild(beerDescription);
+    beerContainer.appendChild(beerFoodPairing);
+    beerContainer.appendChild(beerBrewersTips);
+    beerCard.appendChild(beerContainer);
+    display.appendChild(beerCard);
+
+};
