@@ -1,6 +1,8 @@
 let searchTerm = document.getElementById("form-search");
 const searchButton = document.querySelector("form");
 let searchResults = [];
+let searchString
+let searchTermLowerCase
 
 const randomButton = document.getElementById("random");
 const resetButton = document.getElementById("reset");
@@ -20,7 +22,6 @@ const removeChildren = () => {
 
 
 
-
 //GET beer
 const getBeer = () => {
     fetch("https://api.punkapi.com/v2/beers?page=2&per_page=80")
@@ -36,6 +37,9 @@ const getBeer = () => {
     
 //pull beer and grab tagline
 const findBeer = (beer) => {
+    let searchTermLowerCase = searchTerm.value.toLowerCase();
+    let searchString = `${searchTermLowerCase.charAt(0).toUpperCase() + searchTermLowerCase.slice(1).toLowerCase()}`;
+
     const beerImg = document.createElement("img");
     const beerName = document.createElement("h4");
     const beerAbv = document.createElement("p");
@@ -56,7 +60,7 @@ const findBeer = (beer) => {
     let text = String(beerTagLine.innerText);
     
 //search button works
-    let test = text.indexOf(searchTerm.value);
+    let test = text.indexOf(searchString);
     if (test != -1) {
         beerContainer.appendChild(beerName);
         beerContainer.appendChild(beerAbv);
@@ -76,7 +80,6 @@ const findBeer = (beer) => {
 searchButton.addEventListener("submit", (e) => {
     e.preventDefault();
     display.remove();
-    console.log(display);
     display = document.createElement("div")
     display.classList.add("display");
     header.appendChild(display);  
