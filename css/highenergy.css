@@ -157,7 +157,7 @@ footer {
   height: auto;
   text-align: end;
   color: hsl(324, 70%, 45%);
-  animation: wheelHueColor2 4s infinite;
+  animation: wheelHueColor2 .5s infinite;
   background-color: currentColor;
   background-image: linear-gradient(45deg, white 10%, black 90%);
   background-blend-mode: overlay;
@@ -165,7 +165,7 @@ footer {
 /* style the background of body */
 body {
   color: hsl(324, 70%, 45%);
-  animation: wheelHueColor 4s infinite;
+  animation: wheelHueColor 2s infinite;
   background-color: currentColor;
   background-image: linear-gradient(45deg, white 10%, black 90%);
   background-blend-mode: overlay;
@@ -195,4 +195,85 @@ body {
   70%      { color: grey;}
   80%      { color: black; }
   90%      { color: grey}
+}
+.container2{ 
+  display: flex; 
+  box-shadow: 0 4px 8px 0 #1e1f1d;
+  transition: 0.3s;
+  border-radius: 5px; 
+  width: 95%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-block:15px ;
+  margin-top: 25px;
+  margin-bottom: 100px;
+  background-color: white;
+  height:500px
+} 
+.container2:first-child {
+  flex-basis: 0 23%;
+}
+.beerName2 {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.75em;
+  transition: 0.3s;
+  border-radius: 5px;
+  padding-block: 15px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+
+}
+.abv2{
+  font-size: 1.5em;
+  display: inline-block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  text-align: center;
+  margin-top: 22.4px;
+  margin-bottom: 22.4px;
+}
+.tagline2{
+  font-size: 1.5em;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  text-align: center;
+  margin-top: 22.4px;
+  margin-bottom: 15.4px;
+}
+.beerPhoto2 {
+  position: relative;
+  align-self: center;
+  width: 100px;
+  height: 300px;
+}
+.firstBrewed {
+  font-size: 1.75em;
+  text-align: center;
+}
+.description {
+  font-size: 1.75em;
+  text-align: center; 
+  text-wrap:wrap;
+  width: 70%; 
+}
+.foodPairing {
+  font-size: 1.75em;
+  text-align: center; 
+  text-wrap:wrap;
+  width: 70%; 
+}
+.brewersTips {
+  background-color: yellow ;
+  font-size: 1.4em;
+  text-align: center; 
+  text-wrap:wrap;
+  width: 70%; 
+  margin-top: 70px;
 }
