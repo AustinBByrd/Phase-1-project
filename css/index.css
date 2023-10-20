@@ -197,8 +197,8 @@ footer {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   text-align: center;
-  margin-top: 22.4px;
-  margin-bottom: 22.4px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .tagline2{
   font-size: 1.5em;
@@ -220,24 +220,25 @@ footer {
 .firstBrewed {
   font-size: 1.75em;
   text-align: center;
+  width: 65%;
 }
 .description {
-  font-size: 1.75em;
+  font-size: 1.5em;
   text-align: center; 
   text-wrap:wrap;
-  width: 70%; 
+  width: 65%; 
 }
 .foodPairing {
-  font-size: 1.75em;
+  font-size: 1.5em;
   text-align: center; 
   text-wrap:wrap;
-  width: 70%; 
+  width: 65%; 
 }
 .brewersTips {
   background-color: yellow ;
   font-size: 1.4em;
   text-align: center; 
   text-wrap:wrap;
-  width: 70%; 
+  width: 65%; 
   margin-top: 70px;
 }
