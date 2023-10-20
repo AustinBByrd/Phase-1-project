@@ -37,7 +37,6 @@ fetch("https://api.punkapi.com/v2/beers/random")
 
 //pull beer and grab tagline
 const findBeer = (beer) => {
-
     const beerImg = document.createElement("img");
     const beerName = document.createElement("h4");
     const beerAbv = document.createElement("p");
@@ -114,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var style = document.getElementById('style');
         if (checkbox.checked) {
             audio.play();
-            audio.volume = 0.1;
+            audio.volume = 0.2;
             audio.loop = true;
       
             const volumeControl = document.createElement("input");
@@ -122,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
             volumeControl.setAttribute("id", "volume-control"); 
             volumeControl.min = 0;
             volumeControl.max = 100;
-            volumeControl.value = 10;
+            volumeControl.value = 20;
           
             const footer = document.querySelector("footer"); 
             footer.appendChild(volumeControl);
@@ -159,13 +158,16 @@ const findBeerDetails = (beer) => {
     const beerContainer = document.createElement("div");
     const beerCard = document.createElement("div");
 
+    beerName.classList.add("beerName2");
+    beerAbv.classList.add("abv2");
+    beerTagLine.classList.add("tagline2");
     beerCard.classList.add("card2");
-    beerContainer.classList.add("container");
-    beerImg.classList.add("beerPhoto");
-    beerFirstBrewed.classList.add("first-brewed");
+    beerContainer.classList.add("container2");
+    beerImg.classList.add("beerPhoto2");
+    beerFirstBrewed.classList.add("firstBrewed");
     beerDescription.classList.add("description");
-    beerFoodPairing.classList.add("food-pairing");
-    beerBrewersTips.classList.add("brewers-tips");
+    beerFoodPairing.classList.add("foodPairing");
+    beerBrewersTips.classList.add("brewersTips");
 
     if (beer.image_url === null) {
         beer.image_url = "https://images.punkapi.com/v2/keg.png";
